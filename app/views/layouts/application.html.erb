@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp: <%= @page_title || "Welcome" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  
+  <% if !flash[:notice].blank? %>
+    <div class="notice">
+     <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if !flash[:error].blank? %>
+    <div class="error" style="color:red;">
+        <%= flash[:error] %>
+    </div>
+  <% end %>
+
+  <% if !session[:user_id].blank? %>
+    <div style="float:right;">
+     <%= link_to('Logout', logins_logout_path) %>
+    </div>
+  <% end %>
+
+    <%= yield %>
+  </body>
+</html>
